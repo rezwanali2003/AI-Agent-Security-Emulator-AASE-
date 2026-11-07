@@ -34,9 +34,7 @@ class HfNativeLLM(BaseLLM):
         self.tokenizer.pad_token_id = self.tokenizer.eos_token_id
 
     def parse_tool_callings(self, result):
-        pattern = r'\[\{.*?\}\]'
-        matches = re.findall(pattern, result)
-        return matches[-1]
+        return self.parse_tool_calls(result)
 
     def process(self,
                 agent_process,
